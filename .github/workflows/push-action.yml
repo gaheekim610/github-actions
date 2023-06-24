@@ -8,7 +8,7 @@ jobs:
   branch-name:
     runs-on: ubuntu-latest
     outputs:
-      CURRENT_BRANCH_NAME: ${{steps}}
+      CURRENT_BRANCH_NAME: ${{ steps.check-branch-name.outputs.CURRENT_BRANCH_NAME}}
 
     steps:
       - name: checkout
@@ -20,7 +20,7 @@ jobs:
 
       - name: set CURRENT_BRANCH_NAME
         id: current-branch-name
-        run: echo "CURRENT_BRANCH_NAME = ${{ steps.check-branch-name.outputs.current_branch }}"
+        run: echo "CURRENT_BRANCH_NAME = ${{ steps.check-branch-name.outputs.current_branch }}" >> $GITHUB_OUTPUT
 
   check-branch:
     runs-on: ubuntu-latest
