@@ -25,6 +25,6 @@ jobs:
 
       - name: set IS_RELEASE_BRANCH
         id: is-release-branch
-        run: echo "${{github}}"
+        run: echo "${{ toJSON(github) }}"
 
 
