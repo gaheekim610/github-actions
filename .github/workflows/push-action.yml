@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   check-branch:
-    runs-on: ubuuntu-latest
+    runs-on: ubuntu-latest
     outputs:
       CURRENT_BRANCH : ${{ steps.set-branch-name.outputs.CURRENT_BRANCH}}
     steps:
