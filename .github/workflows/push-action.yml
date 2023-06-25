@@ -11,7 +11,7 @@ jobs:
 
     steps:
 
-      - name: set IS_RELEASE_BRANCH
+      - name: check if release
         run: |
             echo "${{ toJSON(github.event.base_ref) }}" || grep 'release'
 
