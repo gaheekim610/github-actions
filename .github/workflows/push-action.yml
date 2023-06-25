@@ -9,19 +9,28 @@ permissions:
   contents: write
 
 jobs:
-  add-tag:
-    runs-on: ubuntu-latest
-
+  check-branch:
+    runs-on: ubuuntu-latest
+    outputs:
+      CURRENT_BRANCH : ${{ steps.set-branch-name.outputs.CURRENT_BRANCH}}
     steps:
       - name: checkout
         uses: actions/checkout@v3
 
-      - name: 브런치 이름 조회
+      - name: check branch name
         id: branch-name
         uses: tj-actions/branch-names@v6
+      
+      - name: set CURRENT_BRANCH
+        id: set-branch-name
+        run: echo "CURRENT_BRANCH = ${{steps.branch-name.outputs.current_branch}}" >> $GITHUB_OUTPUT
 
+  add-tag:
+    runs-on: ubuntu-latest
+    needs: check-branch
+    steps:
       - name: 버전명으로 치환 및 변수 추가 ( qc-deploy-릴리즈버전-날짜-시간 )
-        run: echo "TAG=qc-deploy-$(echo '${{ steps.branch-name.outputs.current_branch }}' | egrep -o '[0-9]*\.[0-9]*\.[0-9]*')-$(echo `date "+%Y%m%d-%H%M"`)" >> $GITHUB_ENV
+        run: echo "TAG=qc-deploy-$(echo '${{ needs.check-branch.outputs.CURRENT_BRANCH }}' | egrep -o '[0-9]*\.[0-9]*\.[0-9]*')-$(echo `date "+%Y%m%d-%H%M"`)" >> $GITHUB_ENV
 
       - name: 태그 생성
         run: git tag ${{ env.TAG }}
