@@ -13,7 +13,8 @@ jobs:
 
       - name: check if release
         run: |
-            echo "${{ toJSON(github.event.base_ref) }}" || grep 'release'
+            echo "${{ toJSON(github)}}"
+            echo "${{ github.event.base_ref == 'refs/heads/release/**'}}"
 
 
 
