@@ -8,23 +8,12 @@ on:
 jobs:
   branch-name:
     runs-on: ubuntu-latest
-    outputs:
-      CURRENT_BRANCH_NAME: ${{ steps.check-branch-name.outputs.CURRENT_BRANCH_NAME}}
 
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
-      
-      - name: check branch name
-        id: check-branch-name
-        uses: tj-actions/branch-names@v6
-
-      - name: set CURRENT_BRANCH_NAME
-        id: branch-name
-        run: echo "CURRENT_BRANCH_NAME = ${{ steps.check-branch-name.outputs.current_branch  }}" >> $GITHUB_OUTPUT
 
       - name: set IS_RELEASE_BRANCH
         run: |
-            echo "${{ toJSON(github.event.base_ref) }}"        
+            echo "${{ toJSON(github.event.base_ref) }}" || grep 'release'
+
 
 
