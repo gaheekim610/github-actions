@@ -24,7 +24,9 @@ jobs:
         run: echo "CURRENT_BRANCH_NAME = ${{ steps.check-branch-name.outputs.current_branch  }}" >> $GITHUB_OUTPUT
 
       - name: set IS_RELEASE_BRANCH
-        id: is-release-branch
-        run: echo "${{ toJSON(github) }}"
+        run: |
+            echo "${{ toJSON(github) }}"
+            echo "${{ toJSON(env) }}"
+        
 
 
