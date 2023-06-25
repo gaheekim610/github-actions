@@ -13,7 +13,7 @@ jobs:
 
       - name: check if release
         run: |
-            echo "${{ toJson(github)}}"
+            echo "${{ toJSON(github)}}"
             echo "${{ github.ref}}"
             echo "${{ github.head_ref}}"
             echo "${{ github.base_ref}}"
