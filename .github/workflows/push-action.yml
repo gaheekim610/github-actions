@@ -10,15 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: check if release
-        run: |
-            echo "${{ toJSON(github)}}"
-            echo "${{ github.ref}}"
-            echo "${{ github.head_ref}}"
-            echo "${{ github.base_ref}}"
-            echo "${{ github.event.ref}}"
-            echo "${{ github.event.base_ref}}"
-
-
-
+        id: check-branch
+        run: 
+          echo "$GITHUB_REF"
