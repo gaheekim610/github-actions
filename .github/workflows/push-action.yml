@@ -30,7 +30,7 @@ jobs:
           utcOffset: "+09:00"
 
       - name: 버전명으로 치환 및 변수 추가 ( qc-deploy-릴리즈버전-날짜-시간 )
-        run: echo "TAG=qc-deploy-$(echo '${{ steps.branch-name.outputs.current_branch }}' | egrep -o '[0-9]*\.[0-9]*\.[0-9]*')-$(echo `${{steps.current-time.outputs.formattedTime}}`)" >> $GITHUB_ENV
+        run: echo "TAG=qc-deploy-$(echo '${{ steps.branch-name.outputs.current_branch }}' | egrep -o '[0-9]*\.[0-9]*\.[0-9]*')-$(echo '${{steps.current-time.outputs.formattedTime}}')" >> $GITHUB_ENV
 
       - name: 태그 생성
         run: git tag ${{ env.TAG }}
