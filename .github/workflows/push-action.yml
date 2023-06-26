@@ -37,4 +37,23 @@ jobs:
 
       - name: 태그 푸시
         run: git push origin ${{ env.TAG }}
+      
+      - name: 확인
+        run: echo '${{ github }}'
+      
+  
+  # change-label:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: 8BitJonny/gh-get-current-pr@2.2.0
+  #       id: PR
+      
+  #     - name: set PR
+  #       env:
+  #         PR_BODY: ${{ steps.PR.outputs.pr_body || github.event.pull_request.body }}
+  #       uses: actions/github-script@v6
+  #       with:
+  #         script: |
+
+  #           console.log("")
   
