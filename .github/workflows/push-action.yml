@@ -4,7 +4,7 @@ run-name: QC 브랜치에 push되면 태그 추가 자동화 (${{ github.actor }
 on:
   pull_request:
     branches:
-      - 'release/**'
+      - release/**
     types: [closed]
 
 jobs:
