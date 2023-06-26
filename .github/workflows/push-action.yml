@@ -39,7 +39,7 @@ jobs:
         run: git push origin ${{ env.TAG }}
       
       - name: 확인
-        run: echo '${{ github }}'
+        run: echo '${{ toJSON(github) }}'
       
   
   # change-label:
